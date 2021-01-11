@@ -20,50 +20,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f633588b-71e4-4938-bbc3-8c2ac1450ed9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/bot-shop.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eventHandler/followHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eventHandler/messageHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eventHandler/messageStatusHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eventHandler/unfollowHandler.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/promiseDb.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/pushMessage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/replyMessage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/blank.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/buttons.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/cards.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/charts.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/forgot-password.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/index1.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/tables.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/utilities-animation.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/utilities-border.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/utilities-color.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/utilities-other.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/manage/lineApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/demo.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partial/footer.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partial/footer2.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partial/header.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partial/script.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partial/sidebar.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/partial/topbar.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/template/404.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/template/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/bin/www" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/LineBotSetting.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/LineFriend.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/LineMsgHistory.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/LineSendMsg.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/member.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/order.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/product.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/error.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/error.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/demo.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/demo.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partial/sidebar.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partial/sidebar.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,22 +56,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -114,7 +73,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610305730063</updated>
-      <workItem from="1610305731243" duration="1595000" />
+      <workItem from="1610305731243" duration="1842000" />
+      <workItem from="1610353350462" duration="3415000" />
     </task>
     <servers />
   </component>
@@ -131,6 +91,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1515" y="-28" key="SettingsEditor" timestamp="1610305883373">
