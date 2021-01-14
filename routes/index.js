@@ -38,4 +38,12 @@ router.get('/LineBotSetting', function(req, res, next) {
   res.render('LineBotSetting', { title: 'Express' });
 });
 
+router.get('/liff/liffFull_login', function(req, res, next) {
+  res.render('liff/liffFull_login', { title: 'Express' });
+});
+
+router.get('/liff/liffFull_index', function(req, res, next) {
+  res.render('liff/liffFull_index', { title: 'Express' });
+});
+
 module.exports = router;
