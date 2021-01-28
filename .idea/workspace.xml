@@ -20,21 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f633588b-71e4-4938-bbc3-8c2ac1450ed9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/public/liff/css/materialize.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/liff/css/sweetalert2.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/liff/js/jquery-3.5.1.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/liff/js/liffFull_index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/liff/js/liffFull_login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/liff/js/materialize.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/liff/js/sweetalert2.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/liff/js/vconsole.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/richmenu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/liff/liffFull_index.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/liff/liffFull_login.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/demoAjax.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/manage/LineFriend.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/manage/member.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/manage/product.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/manage/productDetail.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/routes/manage/manage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/productDetail.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eventHandler/messageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/eventHandler/messageHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/replyMessage.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/replyMessage.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/LineFriend.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/LineFriend.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/member.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/member.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/order.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/order.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partial/script.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/partial/script.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/product.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/views/product.ejs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,21 +60,36 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/liff/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/views" />
+      <recent name="$PROJECT_DIR$/public/liff/js" />
+      <recent name="$PROJECT_DIR$/public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/views/liff" />
       <recent name="$PROJECT_DIR$/public/liff/css" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/liff/js" />
-      <recent name="$PROJECT_DIR$/public" />
-      <recent name="$PROJECT_DIR$/views" />
-    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -89,6 +104,9 @@
       <workItem from="1610357828356" duration="11871000" />
       <workItem from="1610380673715" duration="3576000" />
       <workItem from="1610440706262" duration="177000" />
+      <workItem from="1610599674041" duration="378000" />
+      <workItem from="1611138329504" duration="2905000" />
+      <workItem from="1611820880585" duration="3846000" />
     </task>
     <servers />
   </component>
@@ -108,9 +126,21 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1611139080503">
+      <screen x="0" y="25" width="1440" height="812" />
+    </state>
+    <state x="184" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1440.812@0.25.1440.812" timestamp="1611139080503" />
     <state x="-1515" y="-28" key="SettingsEditor" timestamp="1610305883373">
       <screen x="-2048" y="-227" width="2048" height="1127" />
     </state>
     <state x="-1515" y="-28" key="SettingsEditor/-2048.-227.2048.1127/0.25.1440.812@-2048.-227.2048.1127" timestamp="1610305883373" />
+    <state x="421" y="172" width="597" height="518" key="find.popup" timestamp="1611822052014">
+      <screen x="0" y="25" width="1440" height="812" />
+    </state>
+    <state x="421" y="172" width="597" height="518" key="find.popup/0.25.1440.812@0.25.1440.812" timestamp="1611822052014" />
+    <state x="385" y="161" width="670" height="676" key="search.everywhere.popup" timestamp="1611823126120">
+      <screen x="0" y="25" width="1440" height="812" />
+    </state>
+    <state x="385" y="161" width="670" height="676" key="search.everywhere.popup/0.25.1440.812@0.25.1440.812" timestamp="1611823126120" />
   </component>
 </project>

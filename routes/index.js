@@ -18,6 +18,10 @@ router.get('/product', function(req, res, next) {
   res.render('product', { title: 'Express' });
 });
 
+router.get('/productDetail', function(req, res, next) {
+  res.render('productDetail', { title: 'Express' });
+});
+
 router.get('/order', function(req, res, next) {
   res.render('order', { title: 'Express' });
 });
@@ -45,5 +49,7 @@ router.get('/liff/liffFull_login', function(req, res, next) {
 router.get('/liff/liffFull_index', function(req, res, next) {
   res.render('liff/liffFull_index', { title: 'Express' });
 });
+
+
 
 module.exports = router;

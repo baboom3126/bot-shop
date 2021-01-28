@@ -12,7 +12,12 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <%- include ./partial/header.ejs%>
-
+<style>
+    table{  table-layout: fixed;
+    }
+    td{  overflow-wrap: break-word;
+    }
+</style>
 </head>
 
 <body id="page-top">
@@ -46,123 +51,31 @@
 
 
 
-                <div class="row">
+                <div class="row" id="div_productList">
 
-                    <div class="col-lg-4">
-                        <!-- Basic Card Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">商品1</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                    <div class="col-lg-4">-->
+<!--                        &lt;!&ndash; Basic Card Example &ndash;&gt;-->
+<!--                        <div class="card shadow mb-4">-->
+<!--                            <div class="card-header py-3">-->
+<!--                                <h6 class="m-0 font-weight-bold text-primary">商品1</h6>-->
+<!--                            </div>-->
+<!--                            <div class="card-body">-->
+<!--                                <div class="row no-gutters align-items-center">-->
+<!--                                    <div class="col mr-2">-->
+<!--                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">-->
+<!--                                            Earnings (Monthly)</div>-->
+<!--                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>-->
+<!--                                    </div>-->
+<!--                                    <div class="col-auto">-->
+<!--                                        <a href="/productDetail?id=a123" class="btn btn-primary">詳細內容</a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                    </div>
-
-<!--                    ///-->
-                    <div class="col-lg-4">
-                        <!-- Basic Card Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">商品1</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-<!--                    ///-->
-
-                    <div class="col-lg-4">
-                        <!-- Basic Card Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">商品1</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-<!--                    ///-->
-
-                    <div class="col-lg-4">
-                        <!-- Basic Card Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">商品1</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+<!--                    </div>-->
 
 
-<!--                    ///-->
-                    <div class="col-lg-4">
-                        <!-- Basic Card Example -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">商品1</h6>
-                            </div>
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            Earnings (Monthly)</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
 
 
                 </div>
@@ -176,7 +89,7 @@
         </div>
         <!-- End of Main Content -->
 
-        <%- include ./partial/footer.ejs%>>
+        <%- include ./partial/footer.ejs%>
 
     </div>
     <!-- End of Content Wrapper -->
@@ -184,10 +97,11 @@
 </div>
 <!-- End of Page Wrapper -->
 
-<%- include ./partial/footer2.ejs%>>
+<%- include ./partial/footer2.ejs%>
 
 
-<%- include ./partial/script.ejs%>>
+<%- include ./partial/script.ejs%>
+<script src = "./js/manage/product.js"></script>
 
 
 </body>
