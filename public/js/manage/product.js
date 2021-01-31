@@ -70,7 +70,7 @@ var a_productDetail_click = function (Pid){
                         <td>${response[i].CommentUserName}</td>
                         <td>${response[i].Comment}</td>
                         <td>${new Date(response[i].CreateTime).toLocaleDateString()}</td>
-                        <td><button class="btn btn-danger">刪除</button></td>
+                        <td><button class="btn btn-danger" onclick="javascript:btn_delete_product_comment('${response[i].ProductCommentId}')">刪除</button></td>
                         
                         </tr>`
         }
@@ -86,6 +86,40 @@ var a_productDetail_click = function (Pid){
         })
 
         console.log(response)
+    })
+
+
+}
+
+let btn_delete_product_comment = function(p_comment_id){
+    console.log(p_comment_id)
+    let postData = {}
+    postData.p_comment_id = p_comment_id
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "/manage/product/delProductCommentById",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json",
+            "cache-control": "no-cache"
+        },
+        data: JSON.stringify(postData)
+    }
+
+    $.ajax(settings).done(function (response) {
+        console.log(response)
+        Swal.fire({
+            title: '刪除成功',
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: `確定`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                location.reload()
+
+            }
+        })
     })
 
 

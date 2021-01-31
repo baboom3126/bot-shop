@@ -15,99 +15,112 @@
     <!-- Compiled and minified JavaScript -->
     <script src="/liff/js/materialize.min.js"></script>
 
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="/liff/js/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="/liff/css/sweetalert2.min.css" id="theme-styles">
     <script src="/liff/js/vconsole.min.js"></script>
-    <script>
-        var vConsole = new VConsole();
-    </script>
+    <!--    <script>-->
+    <!--        var vConsole = new VConsole();-->
+    <!--    </script>-->
+
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        footer {
+            position: fixed !important;
+            left: 0 !important;
+            bottom: 0 !important;
+            width: 100% !important;
+            /*background-color: red!important;*/
+            color: white !important;
+            text-align: center !important;
+        }
+    </style>
 </head>
 
-<body>
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="button">
-            <span>SEND</span>
+<body style="background-color: #f5f5f5">
+
+<!-- Modal Trigger -->
+<!--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>-->
+
+<!-- Modal Structure -->
+
+
+
+<nav>
+    <div class="nav-wrapper blue">
+        <a href="#" class="brand-logo center">Bot-Shop</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <br><br>
+    <div class="card ">
+        <div class="card-content" style="padding-bottom: 0px;">
+
+
+            <h4>綁定帳號</h4>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled value="" id="input_name" type="text" class="validate">
+                    <label for="input_name"></label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="input_email" type="email" class="validate">
+                    <label for="input_email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s5">
+                    <input id="input_year" type="number" class="validate" max="2100" min="1800">
+                    <label for="input_year">生日 年</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="input_month" type="number" class="validate" max="12" min="1">
+                    <label for="input_month">月</label>
+                </div>
+                <div class="input-field col s3">
+                    <input id="input_day" type="number" class="validate" max="30" min="1">
+                    <label for="input_day" >日</label>
+                </div>
+            </div>
+
+            <br><br><br><br>
         </div>
-        <div class="file-path-wrapper">
-            <input type="text" id="text1">
-        </div>
+
     </div>
 </div>
 
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="btn_geo">
-            <span>GEOL</span>
-        </div>
-        <div class="file-path-wrapper">
-            <input type="text" id="input_lat">
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="btn_geo1" style="visibility: hidden;">
-            <span>GEOL</span>
-        </div>
-        <div class="file-path-wrapper">
-            <input type="text" id="input_lon">
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="btn_qrcode">
-            <span>Qrcode</span>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="btn_login">
-            <span>login</span>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="btn_logout">
-            <span>logout</span>
-        </div>
-    </div>
-</div>
 
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="btn_islogged">
-            <span>islogged</span>
-        </div>
+<footer class="page-footer waves-effect waves-light blue darken-3" id="footer_register" style="padding-bottom: 10px;padding-top: 10px;">
+    <div class="container">
+        <span style="text-decoration: none;color:white;font-size:x-large;">註冊</span>
     </div>
-</div>
 
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="btn_shareTargetPicker">
-            <span>share</span>
-        </div>
-    </div>
-</div>
+</footer>
 
-<div class="row">
-    <div class="file-field input-field">
-        <div class="btn" id="btn_ott">
-            <span>ott</span>
-        </div>
-    </div>
-</div>
 
-<button id="btn_test" class="btn btn-primary">test</button>
-<input type="text" id="input_test" >
 <script src="/liff/js/liffFull_login.js"></script>
+<script>
 
+</script>
 </body>
 </html>

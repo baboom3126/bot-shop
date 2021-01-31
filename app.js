@@ -11,7 +11,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var webhookRouter = require('./routes/webhook')
 var manageRouter = require('./routes/manage/manage')
-
+var liffApiRouter = require('./routes/liffApi')
 var app = express();
 
 // view engine setup
@@ -28,6 +28,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/webhook',webhookRouter);
 app.use('/manage',manageRouter);
+app.use('/liffApi',liffApiRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

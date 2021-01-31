@@ -1,6 +1,6 @@
 const baseUrl = window.location.origin;
 var profile;
-
+var LineUid;
 var el = document.querySelector('.tabs');
 var instance = M.Tabs.init(el, {});
 
@@ -10,8 +10,11 @@ $(document).ready(function () {
     if (!navigator.geolocation) {
         alert('app does not support geolocation service');
     }
+    $('.modal').modal();
+
 
 });
+
 
 
 let initializeLiff = function (myLiffId) {
@@ -37,6 +40,8 @@ let showProfileName = function () {
                     profile = result
                     const name = result.displayName
                     $('#span_name').html(name)
+                    $('#input_name').val(name)
+                    LineUid = result.userId
                 })
                 .catch((err) => {
                     console.log(err)
@@ -78,3 +83,43 @@ let showProductDetail = function (productId){
     console.log(productId)
 
 }
+
+let btn_register_click = function(){
+    swal.showLoading()
+
+
+
+    btn_modal_close.click()
+
+}
+
+$('#btn_memberInfo').click(function(){
+    // swal.fire({
+    //     icon: 'success',
+    //     title: '取得會員資訊',
+    //     showConfirmButton: false
+    // })
+    let postData = {}
+    postData.lineUid = LineUid
+    var settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "/liffApi/getMemberExistByLineUid/",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json",
+            "cache-control": "no-cache"
+        },
+        "data": JSON.stringify(postData)
+    }
+
+    $.ajax(settings).done(function (response) {
+        swal.close()
+        $('#input_email').val(response[0].Email)
+        $('#input_year').val(response[0].Birthday.substring(0,4))
+        $('#input_month').val(response[0].Birthday.substring(4,6))
+        $('#input_day').val(response[0].Birthday.substring(6,8))
+        console.log(response)
+    })
+
+})

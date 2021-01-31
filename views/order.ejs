@@ -11,7 +11,7 @@
 
     <title>SB Admin 2 - Dashboard</title>
 
-    <%- include ./partial/header.ejs%>
+    <%- include ./partial/header.ejs %>
 
 </head>
 
@@ -20,7 +20,7 @@
 <!-- Page Wrapper -->
 <div id="wrapper">
 
-    <%- include ./partial/sidebar.ejs%>
+    <%- include ./partial/sidebar.ejs %>
 
 
     <!-- Content Wrapper -->
@@ -29,7 +29,7 @@
         <!-- Main Content -->
         <div id="content">
 
-            <%- include ./partial/topbar.ejs%>
+            <%- include ./partial/topbar.ejs %>
 
 
             <!-- Begin Page Content -->
@@ -38,79 +38,48 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">訂單</h1>
-<!--                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i-->
-<!--                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
+                    <!--                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i-->
+                    <!--                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>-->
                 </div>
 
 
+                <div class="row" id="div_orderList">
 
+<!--                    <div class="col-lg-10">-->
+<!--                        <div class="card shadow mb-4">-->
+<!--                            &lt;!&ndash; Card Header - Accordion &ndash;&gt;-->
+<!--                            <a href="#collapseCardExample" class="d-block card-header py-3 cc_pointer"-->
+<!--                               data-toggle="collapse" role="button" aria-expanded="true"-->
+<!--                               aria-controls="collapseCardExample">-->
+<!--                                <h6 class="m-0 font-weight-bold text-primary">訂單編號 AAAA1111 <span class="text-danger">已完成</span>-->
+<!--                                </h6>-->
+<!--                            </a>-->
+<!--                            &lt;!&ndash; Card Content - Collapse &ndash;&gt;-->
+<!--                            <div class="collapse show" id="collapseCardExample" style="">-->
+<!--                                <div class="card-body">-->
+<!--                                    <div class="row">-->
+<!--                                        <div class="col-lg-6">-->
+<!--                                            <h6 class="text-primary" style="font-weight: bold;" id="div_orderInfo">詳細內容</h6>-->
+<!--                                            <div>狀態</div>-->
+<!--                                            <div>地址</div>-->
+<!--                                            <div>顧客</div>-->
+<!--                                        </div>-->
+<!--                                        <div class="col-lg-6">-->
 
+<!--                                            <h6 class="text-primary" style="font-weight: bold;" id="div_orderDetail">訂單內容</h6>-->
+<!--                                            <div>商品1 * 5</div>-->
+<!--                                            <div>商品1 * 5</div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                    <hr>-->
+<!--                                    <h6 class="text-primary" id="div_totalMoney">總金額 1000</h6>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
-                <div class="row">
-
-                    <div class="col-lg-10">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Accordion -->
-                            <a href="#collapseCardExample" class="d-block card-header py-3 cc_pointer" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                <h6 class="m-0 font-weight-bold text-primary">訂單編號 AAAA1111 <span class="text-danger">已完成</span></h6>
-                            </a>
-                            <!-- Card Content - Collapse -->
-                            <div class="collapse show" id="collapseCardExample" style="">
-                                <div class="card-body">
-                                    <h6 class="text-primary">詳細內容</h6>
-                                    <div>商品1 * 5 </div>
-                                    <div>商品1 * 5 </div>
-                                    <hr>
-                                    <h6 class="text-primary">總金額 1000</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <div class="col-lg-10">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Accordion -->
-                            <a href="#collapseCardExample" class="d-block card-header py-3 cc_pointer" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                <h6 class="m-0 font-weight-bold text-primary">訂單編號 AAAA1111 <span class="text-danger">已完成</span></h6>
-                            </a>
-                            <!-- Card Content - Collapse -->
-                            <div class="collapse show" id="collapseCardExample" style="">
-                                <div class="card-body">
-                                    <h6 class="text-primary">詳細內容</h6>
-                                    <div>商品1 * 5 </div>
-                                    <div>商品1 * 5 </div>
-                                    <hr>
-                                    <h6 class="text-primary">總金額 1000</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="col-lg-10">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Accordion -->
-                            <a href="#collapseCardExample" class="d-block card-header py-3 cc_pointer" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                                <h6 class="m-0 font-weight-bold text-primary">訂單編號 AAAA1111 <span class="text-danger">已完成</span></h6>
-                            </a>
-                            <!-- Card Content - Collapse -->
-                            <div class="collapse show" id="collapseCardExample" style="">
-                                <div class="card-body">
-                                    <h6 class="text-primary">詳細內容</h6>
-                                    <div>商品1 * 5 </div>
-                                    <div>商品1 * 5 </div>
-                                    <hr>
-                                    <h6 class="text-primary">總金額 1000</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+<!--                    </div>-->
 
                 </div>
-
 
 
             </div>
@@ -119,7 +88,7 @@
         </div>
         <!-- End of Main Content -->
 
-        <%- include ./partial/footer.ejs%>
+        <%- include ./partial/footer.ejs %>
 
     </div>
     <!-- End of Content Wrapper -->
@@ -127,10 +96,11 @@
 </div>
 <!-- End of Page Wrapper -->
 
-<%- include ./partial/footer2.ejs%>
+<%- include ./partial/footer2.ejs %>
 
 
-<%- include ./partial/script.ejs%>
+<%- include ./partial/script.ejs %>
+<script src = "./js/manage/order.js"></script>
 
 
 </body>

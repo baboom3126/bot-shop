@@ -49,6 +49,43 @@
 
 <body>
 
+<!-- Modal Trigger -->
+<!--<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>-->
+
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>會員資料</h4>
+
+        <div class="row">
+            <div class="input-field col s12">
+                <input disabled value="" id="input_name" type="text" class="validate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input disabled id="input_email" type="email" class="validate">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s5">
+                <input disabled id="input_year" type="number" class="validate">
+            </div>
+            <div class="input-field col s3">
+                <input disabled id="input_month" type="number" class="validate">
+            </div>
+            <div class="input-field col s3">
+                <input disabled id="input_day" type="number" class="validate">
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat" id="btn_modal_close">關閉</a>
+    </div>
+</div>
+
+
 <nav>
     <div class="nav-wrapper blue">
         <a href="#" class="brand-logo center">Bot-Shop</a>
@@ -67,9 +104,9 @@
                                        id="btn_login">登入</a></div>
             </div>
             <div class="row" id="div_logged" style="display: none">
-                <div class="col s8" style="line-height: 36px;">你好, <span id="span_name"></span></div>
-                <div class="col s4"><a class="waves-effect waves-light btn blue" style="width: 100%;"
-                                       id="btn_logout">登出</a></div>
+                <div class="col s6" style="line-height: 36px;">你好, <span id="span_name"></span></div>
+                <div class="col s6"><a href="#modal1" class="waves-effect waves-light btn blue modal-trigger" id="btn_memberInfo"style="width: 100%;"
+                                        >會員資料</a></div>
 
             </div>
         </div>
@@ -300,6 +337,9 @@
         </div>
     </div>
 </div>
+
+
+
 
 
 <footer class="page-footer waves-effect waves-light blue darken-3" style="padding-bottom: 10px;padding-top: 10px;">

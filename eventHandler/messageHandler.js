@@ -1,16 +1,30 @@
 let replyMessage = require('../lib/replyMessage')
 let pushMessage = require('../lib/pushMessage')
 let {promiseDb} = require('../lib/promiseDb')
+var {v4: uuidv4} = require('uuid');
 
 
 async function messageHandler(event) {
     try {
+        // {
+        //     type: 'message',
+        //         replyToken: '33589ec227c24cb79557c88bbe2fa981',
+        //     source: { userId: 'U649eccc9550a94b6a4b5af38439bcf09', type: 'user' },
+        //     timestamp: 1612093842094,
+        //         mode: 'active',
+        //     message: { type: 'text', id: '13477183146222', text: 'fwef' }
+        // }
+
         let replyToken = event.replyToken
-        let messageTime = event.messageTime
+        let messageTime = event.timestamp
         let messageType = event.message.type
+        let userId = event.source.userId
+
         if (messageType === 'text') {
 
             let text = event.message.text
+            await saveMessageToDb(userId,text,messageTime,replyToken)
+
 
             switch (text) {
                 case "查詢訂單":
@@ -199,4 +213,13 @@ async function replyMessageTemplateForOrderQuery(uid) {
 
     })
 
+}
+
+async function saveMessageToDb(userId,text,messageTime,replyToken) {
+    try {
+        let InsertMessage = await promiseDb(`INSERT INTO linemessage (LineMessageId,LineFriendUid,LineMessageContent,LineReplyToken,LineMessageTime) 
+                                                    VALUES (?,?,?,?,?)`,[uuidv4(),userId,text,replyToken,new Date(messageTime)])
+    } catch (err) {
+        console.log(err)
+    }
 }
