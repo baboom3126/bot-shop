@@ -1,6 +1,7 @@
 const baseUrl = window.location.origin;
 var profile;
 var LineUid;
+var memberId;
 var el = document.querySelector('.tabs');
 var instance = M.Tabs.init(el, {});
 
@@ -42,6 +43,47 @@ let showProfileName = function () {
                     $('#span_name').html(name)
                     $('#input_name').val(name)
                     LineUid = result.userId
+
+                    /////////////check member exist
+                    let postData = {}
+                    postData.LineUid = result.userId
+                    var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "/liffApi/getMemberExistByLineUid/",
+                        "method": "POST",
+                        "headers": {
+                            "content-type": "application/json",
+                            "cache-control": "no-cache"
+                        },
+                        "data": JSON.stringify(postData)
+                    }
+
+                    $.ajax(settings).done(function (response) {
+                        if(response == 'not exist'){
+                            Swal.fire({
+                                title: '請先綁定帳號',
+                                showDenyButton: false,
+                                showCancelButton: false,
+                                confirmButtonText: `確定`
+                            }).then((result) => {
+                                if (result.isConfirmed) {
+                                    location.href = '/liff/liffFull_login'
+
+                                }
+                            })
+                        }else{
+                            memberId = response[0].MemberId
+                            $('#input_email').val(response[0].Email)
+                            $('#input_year').val(response[0].Birthday.substring(0,4))
+                            $('#input_month').val(response[0].Birthday.substring(4,6))
+                            $('#input_day').val(response[0].Birthday.substring(6,8))
+                        }
+                        console.log(response)
+                    })
+
+
+
                 })
                 .catch((err) => {
                     console.log(err)
@@ -94,32 +136,6 @@ let btn_register_click = function(){
 }
 
 $('#btn_memberInfo').click(function(){
-    // swal.fire({
-    //     icon: 'success',
-    //     title: '取得會員資訊',
-    //     showConfirmButton: false
-    // })
-    let postData = {}
-    postData.lineUid = LineUid
-    var settings = {
-        "async": true,
-        "crossDomain": true,
-        "url": "/liffApi/getMemberExistByLineUid/",
-        "method": "POST",
-        "headers": {
-            "content-type": "application/json",
-            "cache-control": "no-cache"
-        },
-        "data": JSON.stringify(postData)
-    }
 
-    $.ajax(settings).done(function (response) {
-        swal.close()
-        $('#input_email').val(response[0].Email)
-        $('#input_year').val(response[0].Birthday.substring(0,4))
-        $('#input_month').val(response[0].Birthday.substring(4,6))
-        $('#input_day').val(response[0].Birthday.substring(6,8))
-        console.log(response)
-    })
 
 })

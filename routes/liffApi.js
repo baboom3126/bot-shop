@@ -8,9 +8,11 @@ router.post('/registerMember', async function(req, res, next) {
         let name = req.body.name
         let email = req.body.email
         let birthday = req.body.birthday
-        let lineUid = req.body.lineUid
-        let checkMemberExistByEmail = await promiseDb(`SELECT * FROM member WHERE Email = ?`,[email])
-        if(checkMemberExistByEmail.length==0){
+        let lineUid = req.body.LineUid
+        let checkMemberExistByLineUid = await promiseDb(`SELECT * FROM member WHERE LineUid = ?`,[lineUid])
+        console.log(checkMemberExistByLineUid)
+
+        if(checkMemberExistByLineUid.length==0){
             let InsertMember = await promiseDb(`INSERT INTO member 
                                 (MemberId, MemberName, Email, Password, Birthday, LineUid,FacebookUid) 
                                 VALUES (?,?,?,?,?,?,?)`,[uuidv4(),name,email,'',birthday,lineUid,''])
@@ -30,8 +32,8 @@ router.post('/registerMember', async function(req, res, next) {
 
 router.post('/getMemberExistByLineUid',async function(req,res,next){
     try{
-        let lineUid = req.body.lineUid
-        let queryMemberByEmail = await promiseDb(`SELECT * FROM member WHERE LineUid = ?`,[lineUid])
+        let LineUid = req.body.LineUid
+        let queryMemberByEmail = await promiseDb(`SELECT * FROM member WHERE LineUid = ?`,[LineUid])
         if(queryMemberByEmail.length==1){
             res.json(queryMemberByEmail)
         }else if(queryMemberByEmail.length == 0){

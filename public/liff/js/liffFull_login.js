@@ -45,7 +45,7 @@ let getProfile = function () {
                 $('#input_name').val(name)
                 /////////////check member exist
                 let postData = {}
-                postData.lineUid = result.userId
+                postData.LineUid = result.userId
                 var settings = {
                     "async": true,
                     "crossDomain": true,
@@ -123,7 +123,7 @@ $('#footer_register').click(function () {
             confirmButtonText: `確定`
         }).then((result) => {
             if (result.isConfirmed) {
-                location.reload()
+                location.href = '/liff/liffFull_index'
 
             }
         })
