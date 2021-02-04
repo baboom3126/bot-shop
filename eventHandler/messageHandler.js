@@ -29,7 +29,6 @@ async function messageHandler(event) {
             switch (text) {
                 case "查詢訂單":
 
-                    // await replyMessage(replyMessageTemplate("請問要查詢哪一個訂單"), replyToken)
                     ///Db set status of this uid
                     await replyMessage(await replyMessageTemplateForOrderQuery(event.source.userId), replyToken)
 
@@ -51,6 +50,30 @@ async function messageHandler(event) {
                     await replyMessage(replyMessageTemplate("購物金一次僅能轉送$100，\n請輸入欲贈送的Email"), replyToken)
                     break;
                 default:
+
+                    if(text.includes('我要查詢')){
+                        let orderId = text.split('我要查詢')[1]
+                        console.log('[INFO] 查詢訂單 '+orderId)
+                        let queryOrder = await promiseDb(`SELECT * FROM \`order\` WHERE OrderId = '${orderId}'`)
+                        let replyOrderInfo = `訂單編號 ${orderId}\n外送地址 ${queryOrder[0].DeliverAddress}\n目前狀態 ${queryOrder[0].Status=='1'?"進行中":"已完成"}`
+                        let queryOrderDetail = await promiseDb(`SELECT a.*,b.ProductName,b.Price FROM orderdetail as a ,product as b WHERE OrderId='${orderId}' AND a.ProductId = b.ProductId`)
+                        console.log(queryOrderDetail)
+                        let replyOrderDetail = ``
+                        let total = 0
+                        for(let i in queryOrderDetail){
+                            replyOrderDetail+=`${queryOrderDetail[i].ProductName} X ${queryOrderDetail[i].Price}\n`
+                            total = total + parseInt(queryOrderDetail[i].Price)*parseInt(queryOrderDetail[i].ProductNum)
+                        }
+                        replyOrderDetail += "總金額 "+total.toString()
+                        await replyMessage([{
+                            type: 'text',
+                            text: replyOrderInfo
+                        },{
+                            type: 'text',
+                            text: replyOrderDetail
+                        }],replyToken)
+
+                    }
                     ///check db status then
                     //if status == 查詢訂單
 
@@ -109,96 +132,47 @@ function replyMessageTemplate(text) {
 
 }
 
-async function replyMessageTemplateForOrderQuery(uid) {
+async function replyMessageTemplateForOrderQuery(userId) {
+    let queryOrder = await promiseDb(`SELECT OrderId FROM \`order\` WHERE OrderMemberId = (SELECT OrderMemberId FROM member WHERE LineUid = ?) Order by OrderTime`,[userId])
+    let appendOrderIdFlexMsg = []
+    for(let i in queryOrder){
+        let eachContent = {}
+        eachContent.type = "bubble"
+        eachContent.size = "micro"
+        eachContent.body = {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "訂單編號",
+                    "color": "#757575"
+                },
+                {
+                    "type": "text",
+                    "text": queryOrder[i].OrderId,
+                    "contents": [],
+                    "color": "#1565c0"
+                }
+            ],
+            "action": {
+                "type": "message",
+                "label": "我要查詢"+queryOrder[i].OrderId,
+                "text": "我要查詢"+queryOrder[i].OrderId
+            }
+        }
+
+        appendOrderIdFlexMsg.push(eachContent)
+    }
     return new Promise((resolve, reject) => {
         try {
-
 
             resolve({
                 "type": "flex",
                 "altText": "this is a flex message",
                 "contents": {
                     "type": "carousel",
-                    "contents": [
-                        {
-                            "type": "bubble",
-                            "size": "micro",
-                            "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "訂單編號",
-                                        "color": "#757575"
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "123123123123",
-                                        "contents": [],
-                                        "color": "#1565c0"
-                                    }
-                                ],
-                                "action": {
-                                    "type": "message",
-                                    "label": "hello1",
-                                    "text": "hello1"
-                                }
-                            }
-                        },
-                        {
-                            "type": "bubble",
-                            "size": "micro",
-                            "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "訂單編號",
-                                        "color": "#757575"
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "123123123123",
-                                        "contents": [],
-                                        "color": "#1565c0"
-                                    }
-                                ],
-                                "action": {
-                                    "type": "message",
-                                    "label": "hello1",
-                                    "text": "hello1"
-                                }
-                            }
-                        },
-                        {
-                            "type": "bubble",
-                            "size": "micro",
-                            "body": {
-                                "type": "box",
-                                "layout": "vertical",
-                                "contents": [
-                                    {
-                                        "type": "text",
-                                        "text": "訂單編號",
-                                        "color": "#757575"
-                                    },
-                                    {
-                                        "type": "text",
-                                        "text": "123123123123",
-                                        "contents": [],
-                                        "color": "#1565c0"
-                                    }
-                                ],
-                                "action": {
-                                    "type": "message",
-                                    "label": "hello1",
-                                    "text": "hello1"
-                                }
-                            }
-                        }
-                    ]
+                    "contents": appendOrderIdFlexMsg
                 }
             })
         } catch (err) {

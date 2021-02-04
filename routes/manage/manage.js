@@ -67,7 +67,7 @@ router.get('/order/getAllOrder',async function (req,res,next){
 
 router.get('/order/getAllOrderWithDetail',async function(req,res,next){
     try{
-        let queryAllOrder = await promiseDb(`SELECT a.*,b.MemberName FROM mis.\`order\` as a,mis.member as b 
+        let queryAllOrder = await promiseDb(`SELECT a.*,b.MemberName FROM \`order\` as a,mis.member as b 
                                                     where a.OrderMemberId = b.MemberId 
                                                     Order by a.OrderTime
                                                     `)
