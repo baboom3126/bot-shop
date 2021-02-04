@@ -72,7 +72,7 @@ router.post('/getProductCommentByPid',async function(req,res,next){
 router.post('/getOrderAndOrderDetailByLineId',async function (req,res,next) {
     try{
         let lineUid = req.body.lineUid
-        let queryOrder = await promiseDb(`select * from \`order\` where OrderMemberId = (SELECT MemberId FROM \`member\` where LineUid = ?)`,[lineUid])
+        let queryOrder = await promiseDb(`select * from \`order\` as a where OrderMemberId = (SELECT MemberId FROM \`member\` where LineUid = ?) Order by a.OrderTime desc`,[lineUid])
         for(let i in queryOrder){
             let OrderId = queryOrder[i].OrderId
             let queryOrderDetailById = await promiseDb(`SELECT a.*,b.ProductName,b.Price FROM orderdetail as a ,product as b WHERE OrderId=? AND a.ProductId = b.ProductId `,OrderId)
@@ -94,7 +94,7 @@ router.post('/newCommentForProduct',async function(req,res,next){
         let commentUserName = req.body.commentUserName
         let insertProductCommentSQL = await promiseDb(
             `INSERT INTO productcomment (ProductCommentId,ProductId,Comment,CreateTime,CommentUserName,Status) VALUES (?,?,?,?,?,?)`,
-            [uuidv4(),productId,comment,new Date(),commentUserName,'1'])
+            [uuidv4(),productId,comment,new Date(),commentUserName,'進行中'])
 
         console.log(insertProductCommentSQL)
         res.send('success')
@@ -107,5 +107,34 @@ router.post('/newCommentForProduct',async function(req,res,next){
 
 
 })
+
+
+router.post('/newOrder',async function(req,res,next){
+    try{
+        let deliverAddress = req.body.deliverAddress
+        let orderDetail = req.body.orderDetail
+        let memberId = req.body.memberId
+        let newOrderId = uuidv4().slice(0,5).toUpperCase()
+        let newOrderSQL = await promiseDb(`INSERT INTO \`order\` (OrderId,OrderMemberId,Status,OrderTime,DeliverAddress) VALUES (?,?,?,?,?)`,
+            [newOrderId,memberId,'1',new Date(),deliverAddress])
+
+        for(let i in orderDetail){
+            let productId = orderDetail[i].productId
+            let number = orderDetail[i].number
+            let newOrderDetailSQL = await promiseDb(`INSERT INTO orderdetail (OrderDetailId, OrderId, ProductId,ProductNum) VALUES (?,?,?,?)`,
+                [uuidv4(),newOrderId,productId,number])
+
+        }
+
+        res.send('success')
+    }catch(err){
+
+        console.log(err)
+        res.send('fail')
+    }
+
+
+})
+
 
 module.exports = router;

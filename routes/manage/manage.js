@@ -69,7 +69,7 @@ router.get('/order/getAllOrderWithDetail',async function(req,res,next){
     try{
         let queryAllOrder = await promiseDb(`SELECT a.*,b.MemberName FROM \`order\` as a,mis.member as b 
                                                     where a.OrderMemberId = b.MemberId 
-                                                    Order by a.OrderTime
+                                                    Order by a.OrderTime desc
                                                     `)
 
         for(let i in queryAllOrder){
@@ -111,5 +111,16 @@ router.post('/order/getAllOrderByMemberId',async function (req,res,next){
     }
 })
 
+//
+
+router.post('/lineMsg/getALLLineMessage',async function (req,res,next) {
+    try{
+        let queryLineMsg = await promiseDb(`SELECT msg.LineMessageContent ,msg.LineMessageTime ,l.LineFriendName FROM linemessage as msg, linefriend l where l.LineFriendUid = msg.LineFriendUid ORDER BY msg.LineMessageTime desc `)
+        res.json(queryLineMsg)
+    }catch(err){
+        console.log(err)
+        res.send(err)
+    }
+})
 
 module.exports = router;

@@ -27,7 +27,7 @@ async function messageHandler(event) {
 
 
             switch (text) {
-                case "查詢訂單":
+                case "查詢我的訂單":
 
                     ///Db set status of this uid
                     await replyMessage(await replyMessageTemplateForOrderQuery(event.source.userId), replyToken)
@@ -54,14 +54,21 @@ async function messageHandler(event) {
                     if(text.includes('我要查詢')){
                         let orderId = text.split('我要查詢')[1]
                         console.log('[INFO] 查詢訂單 '+orderId)
-                        let queryOrder = await promiseDb(`SELECT * FROM \`order\` WHERE OrderId = '${orderId}'`)
-                        let replyOrderInfo = `訂單編號 ${orderId}\n外送地址 ${queryOrder[0].DeliverAddress}\n目前狀態 ${queryOrder[0].Status=='1'?"進行中":"已完成"}`
-                        let queryOrderDetail = await promiseDb(`SELECT a.*,b.ProductName,b.Price FROM orderdetail as a ,product as b WHERE OrderId='${orderId}' AND a.ProductId = b.ProductId`)
-                        console.log(queryOrderDetail)
+                        let queryOrder = await promiseDb(
+                            `SELECT concat(concat('訂單編號 ',o.OrderId),'\n'),concat(concat('外送地址 ',o.DeliverAddress),'\n'),concat('目前狀態 ',o.Status) FROM \`order\` as o WHERE OrderId = '${orderId}'`)
+                        let a = queryOrder[0]
+                        let replyOrderInfo = ``
+                        console.log(queryOrder)
+                        for (const [key, value] of Object.entries(a)) {
+                            replyOrderInfo+=value;
+                        }
+                        console.log(replyOrderInfo)
+                        let queryOrderDetail = await promiseDb(`SELECT a.ProductNum,b.ProductName,b.Price FROM orderdetail as a ,product as b WHERE OrderId='${orderId}' AND a.ProductId = b.ProductId`)
+                        console.log(queryOrder)
                         let replyOrderDetail = ``
                         let total = 0
                         for(let i in queryOrderDetail){
-                            replyOrderDetail+=`${queryOrderDetail[i].ProductName} X ${queryOrderDetail[i].Price}\n`
+                            replyOrderDetail+=`${queryOrderDetail[i].ProductName}(${queryOrderDetail[i].Price}) X ${queryOrderDetail[i].ProductNum}\n`
                             total = total + parseInt(queryOrderDetail[i].Price)*parseInt(queryOrderDetail[i].ProductNum)
                         }
                         replyOrderDetail += "總金額 "+total.toString()

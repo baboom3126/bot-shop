@@ -20,7 +20,7 @@ $.ajax(settings).done(function (response) {
                                         </td>
                                         <td>${response[i].FacebookUid?response[i].FacebookUid:''}
                                         </td>
-                                        <td>${response[i].FeedbackMoney}</td>
+                                        <td></td>
                                         <td><a class="btn btn-primary" value="${response[i].MemberId}">設定</a></td>
                                     </tr>`
     }

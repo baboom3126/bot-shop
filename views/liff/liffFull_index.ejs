@@ -120,31 +120,31 @@
         <div class="card-content grey lighten-5">
             <div id="div_tab_productList">
 
-                <div class="divider"></div>
-                <div class="section">
-                    <h5><a onclick="javascript:showProductDetail('productId')">商品1</a> <small>$100</small></h5>
-                    <div class="row" style="margin:0px;">
-                        <div class="col s8">
-                            X <span style="text-decoration: underline;font-size: x-large;">0</span> 個 = $ <span style="text-decoration: underline;font-size: x-large;">0</span>
-                        </div>
+<!--                <div class="divider"></div>-->
+<!--                <div class="section">-->
+<!--                    <h5><a onclick="javascript:showProductDetail('productId')">商品1</a> <small>$100</small></h5>-->
+<!--                    <div class="row" style="margin:0px;">-->
+<!--                        <div class="col s8">-->
+<!--                            X <span style="text-decoration: underline;font-size: x-large;">0</span> 個 = $ <span style="text-decoration: underline;font-size: x-large;">0</span>-->
+<!--                        </div>-->
 
-                        <div class="col s2">
-                            <a class="btn blue lighten-2 waves-effect waves-light" style="font-size:x-large;">+</a>
-                        </div>
-                        <div class="col s2">
+<!--                        <div class="col s2">-->
+<!--                            <a class="btn blue lighten-2 waves-effect waves-light" style="font-size:x-large;">+</a>-->
+<!--                        </div>-->
+<!--                        <div class="col s2">-->
 
-                            <a class="btn blue lighten-2 waves-effect waves-light" style="font-size:x-large;">-</a>
-                        </div>
+<!--                            <a class="btn blue lighten-2 waves-effect waves-light" style="font-size:x-large;">-</a>-->
+<!--                        </div>-->
 
-                    </div>
-                </div>
+<!--                    </div>-->
+<!--                </div>-->
 
 
 
                 <br><br><br><br>
             </div>
             <div id="test5" style="visibility: hidden;">
-                <h5 style="visibility: visible;" id="h5_warning_text_for_product_detail">請由商品列表點選，查詢詳細資訊</h5>
+                <h5 style="visibility: hidden;" id="h5_warning_text_for_product_detail">請由商品列表點選，查詢詳細資訊</h5>
                 <h5 style="color: #0d47a1;font-weight: bold;" id="product_detail_name">${NAME}</h5>
                 <hr>
 
@@ -252,9 +252,9 @@
 
 
 
-<footer class="page-footer waves-effect waves-light blue darken-3" style="padding-bottom: 10px;padding-top: 10px;">
+<footer class="page-footer waves-effect waves-light blue darken-3" style="padding-bottom: 10px;padding-top: 10px;" onclick="javascript:checkout_order()">
     <div class="container">
-        <span style="text-decoration: none;color:white;font-size:x-large;"><span>$0 </span> 結帳</span>
+        <span style="text-decoration: none;color:white;font-size:x-large;">$<span id="total_money">0</span> 結帳</span>
     </div>
 
 </footer>

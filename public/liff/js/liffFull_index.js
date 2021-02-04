@@ -5,6 +5,8 @@ var memberId;
 var el = document.querySelector('.tabs');
 var instance = M.Tabs.init(el, {});
 var productInfos = {};
+var purchaseList = {};
+swal.showLoading()
 $(document).ready(function () {
 
     initializeLiff('1654950618-BgKZnoxN');
@@ -35,16 +37,16 @@ $(document).ready(function () {
                 <div class="section">
                     <h5><a onclick="javascript:showProductDetail('${response[i].ProductId}')">${response[i].ProductName}</a> <small>$${response[i].Price}</small></h5>
                     <div class="row" style="margin:0px;">
-                        <div class="col s8">
+                        <div class="col s8" data="${response[i].ProductId}">
                             X <span style="text-decoration: underline;font-size: x-large;">0</span> 個 = $ <span style="text-decoration: underline;font-size: x-large;">0</span>
                         </div>
 
                         <div class="col s2">
-                            <a class="btn blue lighten-2 waves-effect waves-light" style="font-size:x-large;">+</a>
+                                <a class="btn blue lighten-2 waves-effect waves-light" style="font-size:x-large;" onclick="javascript:add_toCart(this,'${response[i].ProductId}')">+</a>
                         </div>
                         <div class="col s2">
 
-                            <a class="btn blue lighten-2 waves-effect waves-light" style="font-size:x-large;">-</a>
+                            <a class="btn blue lighten-2 waves-effect waves-light" style="font-size:x-large;" onclick="javascript:del_toCart(this,'${response[i].ProductId}')">-</a>
                         </div>
 
                     </div>
@@ -52,7 +54,8 @@ $(document).ready(function () {
             `
         }
         $('#div_tab_productList').html(appendHtml)
-
+        swal.close()
+        $('#h5_warning_text_for_product_detail').css('visibility','visible')
     })
 
 
@@ -160,9 +163,9 @@ let btn_login = function () {
 }
 
 let showProductDetail = function (productId) {
-    $('#div_comments').css('display','none')
-    if(!liff.isLoggedIn()){
-        $('#div_comment_textarea').css('display','none')
+    $('#div_comments').css('display', 'none')
+    if (!liff.isLoggedIn()) {
+        $('#div_comment_textarea').css('display', 'none')
     }
 
     instance.select('test5')
@@ -216,10 +219,10 @@ let showProductDetail = function (productId) {
             `
         }
         $('#div_comments').html(appendHtmlForComments)
-        $('#div_comments').css('display','')
+        $('#div_comments').css('display', '')
 
         $('#btn_share_product_to_line').attr(`onclick`, `javascript:shareProduct('${productId}')`)
-        $('#btn_send_comment').attr('onclick',`javascript:sendComment('${productId}')`)
+        $('#btn_send_comment').attr('onclick', `javascript:sendComment('${productId}')`)
         swal.close()
     })
 
@@ -281,8 +284,8 @@ let myOrder_tab_click = function () {
                             <div class="card-stacked">
 
                                 <div class="card-content">
-                                    <div class="" style="color:#2196F3;font-weight: bold;">訂單編號 ${data[i].OrderId}<span style="position: absolute;right:40px;color:#d84315;">${data[i].Status == '1' ? '進行中' : '已完成'}</span></div>
-                                    <div><small style="color:#616161">2021-01-11 13:17:36.638 </small></div>
+                                    <div class="" style="color:#2196F3;font-weight: bold;">訂單編號 ${data[i].OrderId}<span style="position: absolute;right:40px;color:#d84315;">${data[i].Status}</span></div>
+                                    <div><small style="color:#616161">${new Date(data[i].OrderTime).toLocaleString()}</small></div>
                                     ${appendHtmlForProductNameAndNum}
                                     <hr>
                                     <div>總金額 $${totalMoney}</div>
@@ -329,7 +332,7 @@ let shareProduct = function (productId) {
             }
         ])
             .then(
-
+                // swal.fire('已向好友分享')
 
             ).catch(function (res) {
             alert(res)
@@ -338,7 +341,7 @@ let shareProduct = function (productId) {
 }
 
 
-let sendComment = function(productId){
+let sendComment = function (productId) {
     swal.showLoading()
     let comment = $('#textarea1').val()
     let postData = {}
@@ -361,8 +364,8 @@ let sendComment = function(productId){
     $.ajax(settings).done(function (data) {
         $('#textarea1').val('')
         swal.close()
-        if(data == 'success'){
-            appendNewComment=`
+        if (data == 'success') {
+            appendNewComment = `
                     <div class="col s12">
                         <div class="card horizontal">
                             <div class="card-image">
@@ -383,9 +386,122 @@ let sendComment = function(productId){
                     </div>
             `
             $('#div_comments').append(appendNewComment)
-        }else{
+        } else {
             swal.fire('伺服器錯誤')
         }
     })
 
+}
+
+
+let add_toCart = function (that, pid) {
+    var thisPrice = productInfos[pid].Price
+    var NumberAndMoney = $($(that).parent().parent().parent().find('.s8')).find('span')
+    var number = $(NumberAndMoney[0]).text()
+    $(NumberAndMoney[0]).text((parseInt(number) + 1))
+    var eachTotal = (parseInt(number) + 1) * thisPrice
+    $(NumberAndMoney[1]).text(eachTotal)
+    var sumTotal = parseInt($('#total_money').text())
+    $('#total_money').text(sumTotal + parseInt(thisPrice))
+    if (!purchaseList[pid]) {
+        purchaseList[pid] = {num: 1}
+    } else {
+        purchaseList[pid].num = purchaseList[pid].num + 1
+    }
+}
+
+let del_toCart = function (that, pid) {
+    console.log('123')
+    var thisPrice = productInfos[pid].Price
+    var NumberAndMoney = $($(that).parent().parent().parent().find('.s8')).find('span')
+    var number = $(NumberAndMoney[0]).text()
+    if (parseInt(number) == 0) {
+        //do nothinig
+    } else {
+        $(NumberAndMoney[0]).text((parseInt(number) - 1))
+        var eachTotal = (parseInt(number) - 1) * thisPrice
+        $(NumberAndMoney[1]).text(eachTotal)
+        var sumTotal = parseInt($('#total_money').text())
+        $('#total_money').text(sumTotal - parseInt(thisPrice))
+
+
+        if (purchaseList[pid].num == 1) {
+            delete purchaseList[pid]
+        } else {
+            purchaseList[pid].num = purchaseList[pid].num - 1
+        }
+
+
+    }
+}
+
+let checkout_order = function () {
+    if(jQuery.isEmptyObject(purchaseList)){
+        swal.fire('請選擇商品')
+    }else{
+
+
+    let swalHtml = ``;
+    let orderDetail = []
+    for(let i in purchaseList){
+        let productName = productInfos[i].ProductName
+        let price = productInfos[i].Price
+        swalHtml+=`${productName} (${price}) : ${purchaseList[i].num} 個<br>`
+        let tempJson = {}
+        tempJson['productId'] = i
+        tempJson['number'] = purchaseList[i].num
+        orderDetail.push(tempJson)
+    }
+    swalHtml+=`<hr>總共金額${$('#total_money').text()}`
+
+    Swal.fire({
+        title: '<strong>確認訂單</strong>',
+        width: 650,
+        html:swalHtml,
+        showCloseButton: false,
+        showCancelButton: true,
+        focusConfirm: false
+    }).then(result=>{
+        if(result.isConfirmed){
+            Swal.fire({
+                title: '請輸入您的地址',
+                input: 'text',
+                inputLabel: '',
+                inputPlaceholder: '地址'
+            }).then(result=>{
+                if(result.isConfirmed){
+
+                    let postData = {}
+                    postData.memberId = memberId
+                    postData.deliverAddress = result.value
+                    postData.orderDetail = orderDetail
+
+                    var settings = {
+                        "async": true,
+                        "crossDomain": true,
+                        "url": "/liffApi/newOrder/",
+                        "method": "POST",
+                        "headers": {
+                            "content-type": "application/json",
+                            "cache-control": "no-cache"
+                        },
+                        data:JSON.stringify(postData)
+                    }
+
+                    $.ajax(settings).done(function (response) {
+                        if(response=="success"){
+                            swal.fire('成功下單')
+                        }else{
+                            swal.fire('下單失敗')
+                        }
+
+
+                    })
+
+                }
+
+            })
+        }
+    })
+    }
 }

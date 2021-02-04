@@ -13,7 +13,7 @@ $.ajax(settings).done(function (response) {
     let appendHtml =``
     for(let i in response){
         appendHtml+=`
-                    <div class="col-lg-4">
+                    <div class="col-lg-5">
                         <!-- Basic Card Example -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">

@@ -71,7 +71,7 @@ $(document).ready(function(){
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <h6 class="text-primary" style="font-weight: bold;" id="div_orderInfo">詳細內容</h6>
-                        <div><b>狀態</b> <span style="color: red;">${response[i].Status=='1'?'進行中':'已完成'}</span></div>
+                        <div><b>狀態</b> <span style="color: red;">${response[i].Status}</span></div>
                         <div><b>地址</b> ${response[i].DeliverAddress}</div>
                         <div><b>顧客</b> ${response[i].MemberName}</div>
                         <div><b>時間</b> ${new Date(response[i].OrderTime).toLocaleString()}</div>
