@@ -117,7 +117,7 @@ router.post('/newOrder',async function(req,res,next){
         let memberId = req.body.memberId
         let newOrderId = uuidv4().slice(0,5).toUpperCase()
         let newOrderSQL = await promiseDb(`INSERT INTO \`order\` (OrderId,OrderMemberId,Status,OrderTime,DeliverAddress) VALUES (?,?,?,?,?)`,
-            [newOrderId,memberId,'1',new Date(),deliverAddress])
+            [newOrderId,memberId,'進行中',new Date(),deliverAddress])
 
         for(let i in orderDetail){
             let productId = orderDetail[i].productId

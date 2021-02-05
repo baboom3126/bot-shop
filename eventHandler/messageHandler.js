@@ -140,7 +140,7 @@ function replyMessageTemplate(text) {
 }
 
 async function replyMessageTemplateForOrderQuery(userId) {
-    let queryOrder = await promiseDb(`SELECT OrderId FROM \`order\` WHERE OrderMemberId = (SELECT OrderMemberId FROM member WHERE LineUid = ?) Order by OrderTime`,[userId])
+    let queryOrder = await promiseDb(`SELECT OrderId FROM \`order\` WHERE OrderMemberId = (SELECT MemberId FROM member WHERE LineUid = ?) Order by OrderTime`,[userId])
     let appendOrderIdFlexMsg = []
     for(let i in queryOrder){
         let eachContent = {}
