@@ -7,6 +7,7 @@ router.post('/registerMember', async function(req, res, next) {
     try{
         let name = req.body.name
         let email = req.body.email
+        let password = req.body.password
         let birthday = req.body.birthday
         let lineUid = req.body.LineUid
         let checkMemberExistByLineUid = await promiseDb(`SELECT * FROM member WHERE LineUid = ?`,[lineUid])
@@ -15,7 +16,7 @@ router.post('/registerMember', async function(req, res, next) {
         if(checkMemberExistByLineUid.length==0){
             let InsertMember = await promiseDb(`INSERT INTO member 
                                 (MemberId, MemberName, Email, Password, Birthday, LineUid,FacebookUid) 
-                                VALUES (?,?,?,?,?,?,?)`,[uuidv4(),name,email,'',birthday,lineUid,''])
+                                VALUES (?,?,?,?,?,?,?)`,[uuidv4(),name,email,password,birthday,lineUid,''])
 
         }else{
             //update

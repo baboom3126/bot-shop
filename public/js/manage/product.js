@@ -39,6 +39,14 @@ $.ajax(settings).done(function (response) {
     }
     $('#div_productList').append(appendHtml)
 });
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 var a_productDetail_click = function (Pid){
     console.log(Pid)
@@ -68,8 +76,8 @@ var a_productDetail_click = function (Pid){
         for(let i in response){
             swalHtml+=`<tr>
                         <td>${response[i].CommentUserName}</td>
-                        <td>${response[i].Comment}</td>
-                        <td>${new Date(response[i].CreateTime).toLocaleDateString()}</td>
+                        <td>${escapeHtml(response[i].Comment)}</td>
+                        <td>${new Date(response[i].CreateTime).toLocaleString()}</td>
                         <td><button class="btn btn-danger" onclick="javascript:btn_delete_product_comment('${response[i].ProductCommentId}')">刪除</button></td>
                         
                         </tr>`
@@ -77,7 +85,7 @@ var a_productDetail_click = function (Pid){
         swalHtml+=`                        </table>`
         Swal.fire({
             title: '<strong>商品評論</strong>',
-            width: 650,
+            width: 1000,
 
             html:swalHtml,
             showCloseButton: false,

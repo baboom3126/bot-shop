@@ -84,6 +84,7 @@ $('#footer_register').click(function () {
     swal.showLoading()
     var name = $('#input_name').val()
     var email = $('#input_email').val()
+    var pwd = $('#input_password').val()
     var year = $('#input_year').val()
     var month = $('#input_month').val()
     if (parseInt(month) < 10) {
@@ -100,6 +101,7 @@ $('#footer_register').click(function () {
     var postData = {}
     postData.name = name
     postData.email = email
+    postData.password = pwd
     postData.birthday = birthday
     postData.LineUid = userId
     var settings = {
