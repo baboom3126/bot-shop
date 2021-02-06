@@ -475,7 +475,7 @@ let checkout_order = function () {
                     postData.memberId = memberId
                     postData.deliverAddress = result.value
                     postData.orderDetail = orderDetail
-
+                    postData.lineUid = LineUid
                     var settings = {
                         "async": true,
                         "crossDomain": true,

@@ -49,6 +49,9 @@ async function messageHandler(event) {
                 case "轉送購物金" :
                     await replyMessage(replyMessageTemplate("購物金一次僅能轉送$100，\n請輸入欲贈送的Email"), replyToken)
                     break;
+                case "透過機器人訂餐":
+                    await startOrder(userId,replyToken)
+                    break;
                 default:
 
                     if(text.includes('我要查詢')){
@@ -204,3 +207,313 @@ async function saveMessageToDb(userId,text,messageTime,replyToken) {
         console.log(err)
     }
 }
+
+
+async function startOrder(who,replyToken) {
+    try{
+        //set order status = '開始訂餐'
+
+
+
+
+
+        //then reply product list flex message without complete bubble
+        let flexMessageForProductListWithoutOrderDetail = {
+            "type": "carousel",
+            "contents": [
+                {
+                    "type": "bubble",
+                    "size": "kilo",
+                    "header": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "${ProductName}",
+                                "color": "#ffffff",
+                                "align": "start",
+                                "size": "md",
+                                "gravity": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "$70",
+                                "color": "#ffffff",
+                                "align": "start",
+                                "size": "md",
+                                "gravity": "center",
+                                "margin": "lg"
+                            }
+                        ],
+                        "backgroundColor": "#27ACB2",
+                        "paddingTop": "19px",
+                        "paddingAll": "12px",
+                        "paddingBottom": "16px"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "${ProductDescription}",
+                                        "color": "#8C8C8C",
+                                        "size": "sm",
+                                        "wrap": true
+                                    }
+                                ],
+                                "flex": 1
+                            }
+                        ],
+                        "spacing": "md",
+                        "paddingAll": "12px"
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "+1",
+                                            "text": "新增1個-雞腿便當"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "-1",
+                                            "text": "減少一個-雞腿便當"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "styles": {
+                        "footer": {
+                            "separator": false
+                        }
+                    }
+                }
+            ]
+        }
+
+        let flexMessageForProductList = {
+            "type": "carousel",
+            "contents": [
+                {
+                    "type": "bubble",
+                    "size": "kilo",
+                    "header": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "目前訂單",
+                                "color": "#ffffff",
+                                "align": "start",
+                                "size": "md",
+                                "gravity": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "$70",
+                                "color": "#ffffff",
+                                "align": "start",
+                                "size": "md",
+                                "gravity": "center",
+                                "margin": "lg"
+                            }
+                        ],
+                        "backgroundColor": "#27ACB2",
+                        "paddingTop": "19px",
+                        "paddingAll": "12px",
+                        "paddingBottom": "16px"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "hello, world"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "hello, world"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "hello, world"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "message",
+                                    "label": "送出訂單",
+                                    "text": "送出訂單"
+                                }
+                            },
+                            {
+                                "type": "button",
+                                "action": {
+                                    "type": "message",
+                                    "label": "取消訂單",
+                                    "text": "取消訂單"
+                                }
+                            }
+                        ]
+                    },
+                    "styles": {
+                        "footer": {
+                            "separator": false
+                        }
+                    }
+                },
+                {
+                    "type": "bubble",
+                    "size": "kilo",
+                    "header": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "text",
+                                "text": "${ProductName}",
+                                "color": "#ffffff",
+                                "align": "start",
+                                "size": "md",
+                                "gravity": "center"
+                            },
+                            {
+                                "type": "text",
+                                "text": "$70",
+                                "color": "#ffffff",
+                                "align": "start",
+                                "size": "md",
+                                "gravity": "center",
+                                "margin": "lg"
+                            }
+                        ],
+                        "backgroundColor": "#27ACB2",
+                        "paddingTop": "19px",
+                        "paddingAll": "12px",
+                        "paddingBottom": "16px"
+                    },
+                    "body": {
+                        "type": "box",
+                        "layout": "vertical",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "horizontal",
+                                "contents": [
+                                    {
+                                        "type": "text",
+                                        "text": "${ProductDescription}",
+                                        "color": "#8C8C8C",
+                                        "size": "sm",
+                                        "wrap": true
+                                    }
+                                ],
+                                "flex": 1
+                            }
+                        ],
+                        "spacing": "md",
+                        "paddingAll": "12px"
+                    },
+                    "footer": {
+                        "type": "box",
+                        "layout": "horizontal",
+                        "contents": [
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "+1",
+                                            "text": "新增1個-雞腿便當"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "box",
+                                "layout": "vertical",
+                                "contents": [
+                                    {
+                                        "type": "button",
+                                        "action": {
+                                            "type": "message",
+                                            "label": "-1",
+                                            "text": "減少一個-雞腿便當"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "styles": {
+                        "footer": {
+                            "separator": false
+                        }
+                    }
+                }
+            ]
+        }
+
+
+    }catch(err){
+        console.log(err)
+    }
+
+
+}
+
+
