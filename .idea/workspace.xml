@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f633588b-71e4-4938-bbc3-8c2ac1450ed9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eventHandler/messageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/eventHandler/messageHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/liff/js/liffFull_index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/liff/js/liffFull_index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/liffApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/liffApi.js" afterDir="false" />
-    </list>
+    <list default="true" id="f633588b-71e4-4938-bbc3-8c2ac1450ed9" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +83,7 @@
       <workItem from="1612081190707" duration="16965000" />
       <workItem from="1612437536767" duration="25976000" />
       <workItem from="1612534253256" duration="4052000" />
-      <workItem from="1612627979944" duration="336000" />
+      <workItem from="1612627979944" duration="627000" />
     </task>
     <servers />
   </component>
