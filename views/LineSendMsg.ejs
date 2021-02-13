@@ -57,10 +57,10 @@
                                 <div class="row">
                                     <div class="col-lg-10">
 
-                                        <textarea class="form-control" rows="6"></textarea>
+                                        <textarea class="form-control" rows="6" id="textarea_message"></textarea>
                                     </div>
                                     <div class="col-lg-2">
-                                        <a href="#" class="btn btn-primary btn-icon-split cc_pointer">
+                                        <a class="btn btn-primary btn-icon-split cc_pointer" onclick="javascript:sendMsg()">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-flag"></i>
                                         </span>
@@ -105,7 +105,7 @@
                                     <div class="col-lg-10">
                                         3. 你的超集神助手今天LINE了!!!
                                         2021年最新日誌本/桌曆集點活動開跑!
-                                        邀請茶粉們一同共度未來一年
+                                        邀請粉絲們一同共度未來一年
                                     </div>
                                 </div>
                             </div>
@@ -136,6 +136,7 @@
 
 <%- include ./partial/script.ejs %>
 
+<script src = "./js/manage/LineSendMsg.js"></script>
 
 </body>
 
