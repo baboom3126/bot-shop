@@ -26,6 +26,9 @@ var setWebhook = function () {
 
         $.ajax(settings).done(function (response) {
             console.log(response)
+            if(response==='success'){
+                swal.fire('成功')
+            }
         });
     }else{
         swal.fire('請輸入網址格式')

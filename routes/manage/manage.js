@@ -168,12 +168,12 @@ router.post('/setWebhookUrl',async function(req,res,next){
     axios(config)
         .then(function (response) {
             console.log(JSON.stringify(response.data));
-            res.send(response)
+            res.send('success')
 
         })
         .catch(function (error) {
             console.log(error)
-            res.send(error)
+            res.send('failed')
         });
 
 })
