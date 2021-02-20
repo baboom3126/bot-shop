@@ -8,7 +8,6 @@ router.post('/', async function (req, res, next) {
 
     try {
 
-
         if (req.body.events.length > 0) {
             let event = req.body.events[0]
             let event_type = event.type

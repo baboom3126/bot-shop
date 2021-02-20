@@ -24,7 +24,7 @@ async function messageHandler(event) {
 
             let text = event.message.text
             await saveMessageToDb(userId, text, messageTime, replyToken)
-
+            console.log('[INFO] text : '+text)
 
             switch (text) {
                 case "查詢我的訂單":
@@ -98,8 +98,8 @@ async function messageHandler(event) {
 
                             if (OrderStatus.status == '正在訂餐') {
 
-                                await replyMessage(replyMessageTemplate("請輸入送餐地址"), replyToken)
                                 await promiseDb(`UPDATE lineuserstatus set Status = ? WHERE LineUserUid = ?`, ['輸入地址', userId])
+                                await replyMessage(replyMessageTemplate("請輸入送餐地址"), replyToken)
 
                             }
 
@@ -192,7 +192,7 @@ async function messageHandler(event) {
                                 }
                             }
                         } catch (err) {
-                            console.log('[ERROR]'+err)
+                            console.log('[ERROR]'+err.stack)
                         }
                     } else {
 
@@ -281,7 +281,8 @@ async function messageHandler(event) {
         }
 
     } catch (err) {
-        console.log(err)
+
+        console.log('[ERROR]line 285'+ err)
     }
 
 
