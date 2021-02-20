@@ -22,8 +22,6 @@
     <list default="true" id="f633588b-71e4-4938-bbc3-8c2ac1450ed9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/eventHandler/messageHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/eventHandler/messageHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/manage/LineBotSetting.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/manage/LineBotSetting.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/manage/manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/manage/manage.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +89,7 @@
       <workItem from="1612627979944" duration="627000" />
       <workItem from="1612642955025" duration="711000" />
       <workItem from="1613211603831" duration="5318000" />
-      <workItem from="1613809808774" duration="8318000" />
+      <workItem from="1613809808774" duration="10170000" />
     </task>
     <servers />
   </component>

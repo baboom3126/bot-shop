@@ -52,13 +52,22 @@ async function messageHandler(event) {
                 case "透過機器人訂餐":
                     console.log('透過機器人訂餐')
                     try {
-                        await promiseDb(`DELETE FROM lineuserstatus WHERE LineUserUid = ?`, [userId])
-                        await promiseDb(`INSERT INTO lineuserstatus (Id,LineUserUid,Status,ModifyTIme) VALUES (?,?,?,?)`, [uuidv4(), userId, '正在訂餐', new Date()])
-                        await replyMessage({
-                            "type": "flex",
-                            "altText": "this is a flex message",
-                            "contents": flexMessageForOrderFIXEDthreeProductTemplate('正在訂餐', ' ', ' ', ' ')
-                        }, replyToken)
+
+                        ///check whether is register first
+                        let queryMember = await promiseDb(`SELECT MemberId FROM member WHERE LineUid =?`, [userId])
+                        if (queryMember.length == 0) {
+                            await replyMessage(replyMessageTemplate("請先綁定會員 才可透過機器人點餐\nhttps://liff.line.me/1654950618-gBrJjDKX"), replyToken)
+
+                        } else {
+
+                            await promiseDb(`DELETE FROM lineuserstatus WHERE LineUserUid = ?`, [userId])
+                            await promiseDb(`INSERT INTO lineuserstatus (Id,LineUserUid,Status,ModifyTIme) VALUES (?,?,?,?)`, [uuidv4(), userId, '正在訂餐', new Date()])
+                            await replyMessage({
+                                "type": "flex",
+                                "altText": "this is a flex message",
+                                "contents": flexMessageForOrderFIXEDthreeProductTemplate('正在訂餐', ' ', ' ', ' ')
+                            }, replyToken)
+                        }
                     } catch (err) {
                         console.log(err)
                     }
@@ -68,10 +77,10 @@ async function messageHandler(event) {
                         let deleteLineUserStatus = await promiseDb(`DELETE FROM lineuserstatus WHERE LineUserUid = ?`, [userId])
                         let deleteLineOrder = await promiseDb(`DELETE FROM lineorder WHERE LineOrderUserUid = ?`, [userId])
                         console.log()
-                        if(deleteLineUserStatus.affectedRows==1){
+                        if (deleteLineUserStatus.affectedRows == 1) {
                             await replyMessage(replyMessageTemplate("已取消"), replyToken)
 
-                        }else{
+                        } else {
                             await replyMessage(replyMessageTemplate("目前沒有進行中的訂單"), replyToken)
 
                         }
@@ -87,16 +96,12 @@ async function messageHandler(event) {
                         console.log(OrderStatus)
                         if (OrderStatus) {
 
-                            if(OrderStatus.status == '正在訂餐'){
+                            if (OrderStatus.status == '正在訂餐') {
 
                                 await replyMessage(replyMessageTemplate("請輸入送餐地址"), replyToken)
-                                await promiseDb(`UPDATE lineuserstatus set Status = ? WHERE LineUserUid = ?`,['輸入地址',userId])
+                                await promiseDb(`UPDATE lineuserstatus set Status = ? WHERE LineUserUid = ?`, ['輸入地址', userId])
 
                             }
-
-
-
-
 
 
                         } else {
@@ -138,86 +143,89 @@ async function messageHandler(event) {
                         }], replyToken)
 
                     } else if (text.substring(0, 2) === '訂單') {
-                        let queryStatus = await promiseDb(`SELECT status FROM lineuserstatus WHERE LineUserUid = ?`, [userId])
-                        let OrderStatus = queryStatus[0].status
-                        if (OrderStatus == '正在訂餐') {
-                            let orderAction = text.substring(2, 4)
-                            if (orderAction == "新增") {
-                                let number = text.substring(5, 6)
-                                let productName = text.split(' ')[2]
-                                let queryThisProductCount = await promiseDb('SELECT ProductCount FROM lineorder WHERE ProductName = ?', [productName])
-                                console.log(queryThisProductCount)
-                                if (queryThisProductCount.length == 0) {
-                                    await promiseDb(`INSERT INTO lineorder (Id,LineOrderUserUid,ProductName,ProductCount) VALUES (?,?,?,1)`, [uuidv4(), userId, productName])
+                        try {
 
-                                    await replyOrderInfo(userId,replyToken)
+                            let queryStatus = await promiseDb(`SELECT status FROM lineuserstatus WHERE LineUserUid = ?`, [userId])
+                            let OrderStatus = queryStatus[0].status
+                            if (OrderStatus == '正在訂餐') {
+                                let orderAction = text.substring(2, 4)
+                                if (orderAction == "新增") {
+                                    let number = text.substring(5, 6)
+                                    let productName = text.split(' ')[2]
+                                    let queryThisProductCount = await promiseDb('SELECT ProductCount FROM lineorder WHERE ProductName = ?', [productName])
+                                    console.log(queryThisProductCount)
+                                    if (queryThisProductCount.length == 0) {
+                                        await promiseDb(`INSERT INTO lineorder (Id,LineOrderUserUid,ProductName,ProductCount) VALUES (?,?,?,1)`, [uuidv4(), userId, productName])
 
-                                } else {
-                                    await promiseDb(`UPDATE lineorder SET ProductCount = ? WHERE ProductName = ?`, [parseInt(queryThisProductCount[0].ProductCount) + 1, productName])
+                                        await replyOrderInfo(userId, replyToken)
 
-                                    await replyOrderInfo(userId,replyToken)
+                                    } else {
+                                        await promiseDb(`UPDATE lineorder SET ProductCount = ? WHERE ProductName = ?`, [parseInt(queryThisProductCount[0].ProductCount) + 1, productName])
 
-
-                                }
-                            } else if (orderAction == "刪除") {
-                                let number = text.substring(5, 6)
-                                let productName = text.split(' ')[2]
-                                let queryThisProductCount = await promiseDb('SELECT ProductCount FROM lineorder WHERE ProductName = ?', [productName])
-                                if (queryThisProductCount) {
-                                    if (parseInt(queryThisProductCount[0].ProductCount) > 0) {
-
-                                        if (parseInt(queryThisProductCount[0].ProductCount) == 1) {
-                                            await promiseDb(`DELETE FROM lineorder WHERE LineOrderUserUid = ? And ProductName = ?`,[userId,productName])
-                                            await replyOrderInfo(userId,replyToken)
+                                        await replyOrderInfo(userId, replyToken)
 
 
+                                    }
+                                } else if (orderAction == "刪除") {
+                                    let number = text.substring(5, 6)
+                                    let productName = text.split(' ')[2]
+                                    let queryThisProductCount = await promiseDb('SELECT ProductCount FROM lineorder WHERE ProductName = ?', [productName])
+                                    if (queryThisProductCount) {
+                                        if (parseInt(queryThisProductCount[0].ProductCount) > 0) {
+
+                                            if (parseInt(queryThisProductCount[0].ProductCount) == 1) {
+                                                await promiseDb(`DELETE FROM lineorder WHERE LineOrderUserUid = ? And ProductName = ?`, [userId, productName])
+                                                await replyOrderInfo(userId, replyToken)
+
+
+                                            } else {
+                                                await promiseDb(`UPDATE lineorder SET ProductCount = ? WHERE ProductName = ?`, [parseInt(queryThisProductCount[0].ProductCount) - 1, productName])
+                                                await replyOrderInfo(userId, replyToken)
+
+                                            }
                                         } else {
-                                            await promiseDb(`UPDATE lineorder SET ProductCount = ? WHERE ProductName = ?`, [parseInt(queryThisProductCount[0].ProductCount) - 1, productName])
-                                            await replyOrderInfo(userId,replyToken)
 
                                         }
                                     } else {
 
                                     }
-                                } else {
-
                                 }
                             }
+                        } catch (err) {
+                            console.log('[ERROR]'+err)
                         }
-
-                    }else{
+                    } else {
 
                         ////check status
 
-                        let queryStatus = await promiseDb(`SELECT status FROM lineuserstatus WHERE LineUserUid = ?`,[userId])
-                        if(queryStatus.length!=0){
+                        let queryStatus = await promiseDb(`SELECT status FROM lineuserstatus WHERE LineUserUid = ?`, [userId])
+                        if (queryStatus.length != 0) {
                             console.log(queryStatus)
-                            if(queryStatus[0].status=='輸入地址'){
+                            if (queryStatus[0].status == '輸入地址') {
 
 
-
-                                if(text.length<7){
+                                if (text.length < 7) {
                                     await replyMessage(replyMessageTemplate('請輸入正確的地址'), replyToken)
 
-                                }else{
-                                    let queryAllOrderInfo = await promiseDb(`SELECT * FROM lineorder WHERE LineOrderUserUid = ?`,[userId])
+                                } else {
+                                    let queryAllOrderInfo = await promiseDb(`SELECT * FROM lineorder WHERE LineOrderUserUid = ?`, [userId])
                                     console.log(queryAllOrderInfo)
 
 
                                     let address = text
-                                    let newOrderId = uuidv4().slice(0,5).toUpperCase()
+                                    let newOrderId = uuidv4().slice(0, 5).toUpperCase()
                                     let newOrderSQL = await promiseDb(`INSERT INTO \`order\` (OrderId,OrderMemberId,Status,OrderTime,DeliverAddress) VALUES (?,(SELECT MemberId From member Where LineUid = ?),?,?,?)`,
-                                        [newOrderId,userId,'進行中',new Date(),address])
+                                        [newOrderId, userId, '進行中', new Date(), address])
 
-                                    for(let i in queryAllOrderInfo){
+                                    for (let i in queryAllOrderInfo) {
                                         let productName = queryAllOrderInfo[i].ProductName
                                         let productCount = queryAllOrderInfo[i].ProductCount
                                         let newOrderDetailSQL = await promiseDb(`INSERT INTO orderdetail (OrderDetailId, OrderId, ProductId,ProductNum) VALUES (?,?,(SELECT ProductId FROM mis.product where ProductName = ?),?)`,
-                                            [uuidv4(),newOrderId,productName,productCount])
+                                            [uuidv4(), newOrderId, productName, productCount])
 
                                     }
-                                    await promiseDb(`DELETE FROM lineorder WHERE LineOrderUserUid = ?`,[userId])
-                                    await promiseDb(`DELETE FROM lineuserstatus WHERE LineUserUid = ?`,[userId])
+                                    await promiseDb(`DELETE FROM lineorder WHERE LineOrderUserUid = ?`, [userId])
+                                    await promiseDb(`DELETE FROM lineuserstatus WHERE LineUserUid = ?`, [userId])
 
                                     /////show order detail
 
@@ -243,12 +251,11 @@ async function messageHandler(event) {
                                     replyOrderDetail += "總金額 " + total.toString()
                                     await replyMessage([{
                                         type: 'text',
-                                        text: '訂單已送出 感謝您的訂購\n\n'+replyOrderInfo
+                                        text: '訂單已送出 感謝您的訂購\n\n' + replyOrderInfo
                                     }, {
                                         type: 'text',
                                         text: replyOrderDetail
                                     }], replyToken)
-
 
 
                                 }
@@ -316,7 +323,7 @@ function replyMessageTemplate(text) {
 
 }
 
-async function replyOrderInfo(userId,replyToken){
+async function replyOrderInfo(userId, replyToken) {
 
     let queryCurrentOrderInfo = await promiseDb(`SELECT * FROM lineorder WHERE LineOrderUserUid = ?`, [userId])
 
