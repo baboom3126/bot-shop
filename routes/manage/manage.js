@@ -116,7 +116,7 @@ router.post('/order/getAllOrderByMemberId', async function (req, res, next) {
 
 router.post('/lineMsg/getALLLineMessage', async function (req, res, next) {
     try {
-        let queryLineMsg = await promiseDb(`SELECT msg.LineMessageContent ,msg.LineMessageTime ,l.LineFriendName FROM linemessage as msg, linefriend l where l.LineFriendUid = msg.LineFriendUid ORDER BY msg.LineMessageTime desc `)
+        let queryLineMsg = await promiseDb(`SELECT msg.LineMessageContent ,msg.LineMessageTime ,l.LineFriendName,msg.CreateTime FROM linemessage as msg, linefriend l where l.LineFriendUid = msg.LineFriendUid ORDER BY msg.CreateTime desc `)
         res.json(queryLineMsg)
     } catch (err) {
         console.log(err)

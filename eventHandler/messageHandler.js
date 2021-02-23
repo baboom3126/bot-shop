@@ -24,6 +24,7 @@ async function messageHandler(event) {
 
             let text = event.message.text
             await saveMessageToDb(userId, text, messageTime, replyToken)
+            console.log(userId+','+text+','+messageTime+','+replyToken)
             console.log('[INFO] text : '+text)
 
             switch (text) {
@@ -414,8 +415,9 @@ async function replyMessageTemplateForOrderQuery(userId) {
 
 async function saveMessageToDb(userId, text, messageTime, replyToken) {
     try {
-        let InsertMessage = await promiseDb(`INSERT INTO linemessage (LineMessageId,LineFriendUid,LineMessageContent,LineReplyToken,LineMessageTime) 
-                                                    VALUES (?,?,?,?,?)`, [uuidv4(), userId, text, replyToken, new Date(messageTime)])
+        let InsertMessage = await promiseDb(`INSERT INTO linemessage (LineMessageId,LineFriendUid,LineMessageContent,LineReplyToken,LineMessageTime,CreateTime) 
+                                                    VALUES (?,?,?,?,?,?)`, [uuidv4(), userId, text, replyToken, new Date(messageTime),new Date()])
+        console.log(InsertMessage)
     } catch (err) {
         console.log(err)
     }
