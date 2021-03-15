@@ -20,12 +20,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f633588b-71e4-4938-bbc3-8c2ac1450ed9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/eventHandler/facebookEventController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/eventHandler/facebookEventControllerForPostback.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/webhook.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/webhook.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eventHandler/facebookEventController.js" beforeDir="false" afterPath="$PROJECT_DIR$/eventHandler/facebookEventController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +131,7 @@
       <workItem from="1613809808774" duration="12865000" />
       <workItem from="1614049023753" duration="3297000" />
       <workItem from="1614065319890" duration="36000" />
-      <workItem from="1615832064859" duration="4718000" />
+      <workItem from="1615832064859" duration="5234000" />
     </task>
     <servers />
   </component>

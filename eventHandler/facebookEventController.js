@@ -9,8 +9,8 @@ async function facebookEventController(event) {
         let messageText = event.message.text
         let mid = event.message.mid
 
-        if (messageText.split(' ')[0] == "查詢訂單") {
-            let orderId = messageText.split('查詢訂單')[1]
+        if (messageText.includes("查詢訂單")) {
+            let orderId = messageText.split('查詢訂單')[1].trim()
 
             console.log('[INFO] 查詢訂單 ' + orderId)
             let queryOrder = await promiseDb(
@@ -40,7 +40,7 @@ async function facebookEventController(event) {
         } else if (messageText == "線上訂餐") {
             sendMsg(senderId, '請加入會員 即可訂餐\nhttps://nchu-bot-shop.herokuapp.com/liff/liffFull_index')
         } else {
-            sendMsg(senderId, '請輸入關鍵字服務\n1. 線上訂餐\n2. 查詢訂單 {訂單編號}')
+            sendMsg(senderId, '請輸入關鍵字服務\n1. 線上訂餐\n2. 查詢訂單{訂單編號}')
         }
 
 
