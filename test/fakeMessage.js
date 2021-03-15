@@ -30,7 +30,7 @@ var requestTemplate = function(text){
 //
 //
 //
-const webhookUrl = "https://nchu-bot-shop.herokuapp.com/webhook"
+const webhookUrl = "http://127.0.0.1/webhook"
 var axios = require('axios');
 // var data = JSON.stringify(requestTemplate("透過機器人訂餐"));
 // var data = JSON.stringify(requestTemplate("訂單新增 1個 雞腿便當"));

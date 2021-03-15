@@ -417,7 +417,7 @@ async function saveMessageToDb(userId, text, messageTime, replyToken) {
     try {
         let InsertMessage = await promiseDb(`INSERT INTO linemessage (LineMessageId,LineFriendUid,LineMessageContent,LineReplyToken,LineMessageTime,CreateTime) 
                                                     VALUES (?,?,?,?,?,?)`, [uuidv4(), userId, text, replyToken, new Date(messageTime),new Date()])
-        console.log(InsertMessage)
+        // console.log(InsertMessage)
     } catch (err) {
         console.log(err)
     }
