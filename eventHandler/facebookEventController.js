@@ -38,7 +38,7 @@ async function facebookEventController(event) {
         //     // let userEmail = messageText.split(' ')[1]
         //     // queryOrder(senderId,userEmail)
         } else if (messageText == "線上訂餐") {
-            sendMsg(senderId, '請加入會員 即可訂餐\nhttps://nchu-bot-shop.herokuapp.com/liff/liffFull_index')
+            sendMsg(senderId, '請加入會員 即可訂餐\nhttp://bit.ly/3rSaROn')
         } else {
             sendMsg(senderId, '請輸入關鍵字服務\n1. 線上訂餐\n2. 查詢訂單{訂單編號}')
         }
