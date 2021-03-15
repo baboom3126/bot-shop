@@ -3,6 +3,8 @@ var router = express.Router();
 var messageHandler = require('../eventHandler/messageHandler')
 var followHandler = require('../eventHandler/followHandler')
 var unfollowHandler = require('../eventHandler/unfollowHandler')
+var facebookEventController = require('../eventHandler/facebookEventController')
+var facebookEventControllerForPostback = require('../eventHandler/facebookEventControllerForPostback')
 /* GET home page. */
 router.post('/', async function (req, res, next) {
 
@@ -37,7 +39,7 @@ router.post('/', async function (req, res, next) {
 });
 
 
-router.post('/facebook', (req, res) => {
+router.post('/facebook', async function (req, res, next) {
 
     let body = req.body;
 
@@ -45,13 +47,25 @@ router.post('/facebook', (req, res) => {
     if (body.object === 'page') {
 
         // Iterates over each entry - there may be multiple if batched
-        body.entry.forEach(function(entry) {
+        for(let event of body.entry){
+            // console.log(event)
+            let webhook_event = event.messaging[0];
+            if(webhook_event.message){
+                await facebookEventController(webhook_event)
 
-            // Gets the message. entry.messaging is an array, but
-            // will only ever contain one message, so we get index 0
-            let webhook_event = entry.messaging[0];
-            console.log(webhook_event);
-        });
+            }else if(webhook_event.postback){
+                await facebookEventControllerForPostback(webhook_event)
+            }
+
+        }
+        // body.entry.forEach(function(entry) {
+        //
+        //     // Gets the message. entry.messaging is an array, but
+        //     // will only ever contain one message, so we get index 0
+        //     let webhook_event = entry.messaging[0];
+        //     // await facebookEventController(webhook_event)
+        //     console.log(webhook_event);
+        // });
 
         // Returns a '200 OK' response to all requests
         res.status(200).send('EVENT_RECEIVED');
@@ -63,7 +77,7 @@ router.post('/facebook', (req, res) => {
 });
 
 
-router.get('/facebook', (req, res) => {
+router.get('/facebook', async (req, res) => {
 
     // Your verify token. Should be a random string.
     let VERIFY_TOKEN = process.env.FACEBOOK_PAGE_ACCESS_TOKEN
