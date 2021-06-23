@@ -6,7 +6,7 @@ var unfollowHandler = require('../eventHandler/unfollowHandler')
 var facebookEventController = require('../eventHandler/facebookEventController')
 var facebookEventControllerForPostback = require('../eventHandler/facebookEventControllerForPostback')
 /* GET home page. */
-router.post('/', async function (req, res, next) {
+router.post('/line', async function (req, res, next) {
 
     try {
 
